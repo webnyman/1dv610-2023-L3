@@ -15,7 +15,13 @@ class Controller {
     let result = ''
 
     if (this.isEncode()) {
-      result = this.cypher[this.getcypherToUse()].to(this.getInputText())
+      try {
+        result = this.cypher[this.getcypherToUse()].to(this.getInputText())
+      } catch (error) {
+        if (error) {
+          this.sendFlashMessage('Ett fel uppstod vid chiffreringen: ' + error.message)
+        }
+      }
     } else {
       result = this.cypher[this.getcypherToUse()].from(this.getInputText())
     }
@@ -30,6 +36,9 @@ class Controller {
   }
   isEncode() {
     return this.view.getElementFromDOM('#cypher').checked
+  }
+  sendFlashMessage(message) {
+    this.view.displayFlashMessage(message)
   }
 }
 

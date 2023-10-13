@@ -22,6 +22,14 @@ class View {
       element.textContent = content;
     }
   }
+  displayFlashMessage(message) {
+    const flashMessage = this.createElementInDOM('p', 'flashMessage')
+    flashMessage.textContent = message
+    this.getElementFromDOM('#flashMessage').appendChild(flashMessage)
+    setTimeout(() => {
+      flashMessage.remove()
+    }, 3000)
+  }
 }
 
 export { View }
