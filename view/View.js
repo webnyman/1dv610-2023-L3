@@ -1,8 +1,6 @@
 class View {
   
   constructor() {
-    // Get a reference to the displayResult div
-    this.displayResultDivInApp = this.getElement('#displayResult')
   }
 
   createElementInDOM(tag, className) {
