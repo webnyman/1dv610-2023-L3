@@ -10,18 +10,24 @@ class Controller {
 
   handleButtonClick(event) {
     event.preventDefault();
-    const inputText = this.view.getElementFromDOM("#inputText").value;
-    const cypherToUse = this.view.getElementFromDOM("#cypherToUse").value;
-    const encodeOrDecode = this.view.getElementFromDOM("#encodeOrDecode").value;
     let result = "";
 
-    if (encodeOrDecode === "encode") {
-      result = this.cypher[cypherToUse].to(inputText);
+    if (this.#isEncode()) {
+      result = this.cypher[this.#getcypherToUse()].to(this.#getInputText());
     } else {
-      result = this.cypher[cypherToUse].from(inputText);
+      result = this.cypher[this.#getcypherToUse()].from(this.#getInputText());
     }
 
     this.view.updateElementContent("#displayResult", result);
+  }
+  #getInputText() {
+    return this.view.getElementFromDOM("#inputText").value;
+  }
+  #getcypherToUse() {
+    return this.view.getElementFromDOM("#cypherToUse").value;
+  }
+  #isEncode() {
+    return this.view.getElementFromDOM("#encode").checked;
   }
 }
 
