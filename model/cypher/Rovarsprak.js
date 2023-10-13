@@ -19,14 +19,14 @@ class Rovarsprak {
       }
       return rovarSprak
     } else {
-      return 'Texten är tom eller innehåller ogiltiga tecken'
+      throw new Error('Texten är tom eller innehåller ogiltiga tecken')
     }
   }
 
-  translateFromRovarsprak (textToTranslate = 'hohejoj') {
+  translateFromRovarsprak (textToTranslate) {
     let decodedRovarSprak = ''
     if (this.isRovarSprak(textToTranslate) === false) {
-      decodedRovarSprak = 'Texten är inte på rövarspråk'
+      throw new Error('Texten är inte på rövarspråk')
     } else {
       for (let i = 0; i < textToTranslate.length; i++) {
         if (this.#charsToSkip.includes(textToTranslate[i])) {

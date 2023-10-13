@@ -13,7 +13,7 @@ class Fikonsprak {
     } else if (this.stringFunctions.countNumberOfVowels(textToTranslate) === 0) {
       throw new Error('Texten innehåller inga vokaler')
     } else if (this.stringFunctions.countNumberOfWords(textToTranslate) > 1){
-      throw new CypherError('Det går bara att översätta ett ord i taget')
+      throw new Error('Det går bara att översätta ett ord i taget')
     } else {
       for (let i = 0; i < textToTranslate.length; i++) {
         if (this.#charsToSkip.includes(textToTranslate[i])) {
@@ -26,9 +26,9 @@ class Fikonsprak {
   translateFromFikonSprak (textToTranslate) {
     let translatedTextArray = []
     if (this.stringFunctions.isStringEmpty(textToTranslate)) {
-      throw new CypherError('Texten är tom')
+      throw new Error('Texten är tom')
     } else if (this.isFikonSprak(textToTranslate) === false) {
-      throw new CypherError('Texten är inte på fikonspråk')
+      throw new Error('Texten är inte på fikonspråk')
     } else {
       translatedTextArray = textToTranslate.split(' ')
       return translatedTextArray[1].slice(0, 2) + translatedTextArray[0].substring(2)

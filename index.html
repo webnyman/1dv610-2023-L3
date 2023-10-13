@@ -31,13 +31,13 @@
     <h4>Vill du chiffrera eller dechiffrera en text?</h4>
     <div class="form-group">
       <div class="form-check">
-        <input class="form-check-input" type="radio" name="exampleRadios" id="cypher" value="cypher" checked>
+        <input class="form-check-input" type="radio" name="actionType" id="cypher" value="cypher" checked>
         <label class="form-check-label" for="exampleRadios1">
           Chiffrera
         </label>
       </div>
       <div class="form-check mb-3">
-        <input class="form-check-input" type="radio" name="exampleRadios" id="decypher" value="decypher">
+        <input class="form-check-input" type="radio" name="actionType" id="decypher" value="decypher">
         <label class="form-check-label" for="exampleRadios2">
           Dechiffrera
         </label>
@@ -66,7 +66,7 @@
             Rot13
           </label>
         </div>
-        <button type="button" class="btn btn-primary" id="encodeButton">Skapa Chiffer</button>
+        <button type="button" class="btn btn-primary" id="encodeButton">Chiffrera text</button>
         <div class="text-danger" id="flashMessage"></div>
         <div id="displayResult"></div>
       </div>

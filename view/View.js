@@ -16,6 +16,12 @@ class View {
     return element
   }
 
+  getElementsFromDOM(selector) {
+    const elements = document.querySelectorAll(selector)
+
+    return elements
+  }
+
   updateElementContent(selector, content) {
     const element = this.getElementFromDOM(selector);
     if (element) {

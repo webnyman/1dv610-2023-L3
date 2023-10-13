@@ -5,11 +5,18 @@ class Controller {
   constructor(model, view) {
     this.cypher = model
     this.view = view
+
+    // Eventlisteners
     this.view.getElementFromDOM('#encodeButton').addEventListener('click' , (event) => {
       this.handleButtonClick(event)
     })
-    }
-
+    this.view.getElementsFromDOM('input[name="actionType"]').forEach(element => {
+      addEventListener('change', (event) => {
+        this.changeActionText(event.target.value)
+      })
+    })
+  }
+  
   handleButtonClick(event) {
     event.preventDefault()
     let result = ''
@@ -39,6 +46,15 @@ class Controller {
   }
   sendFlashMessage(message) {
     this.view.displayFlashMessage(message)
+  }
+  changeActionText(actionType) {
+    if (actionType === 'cypher') {
+      this.view.updateElementContent('#typeOfAction', 'chiffrera')
+      this.view.updateElementContent('#encodeButton', 'Chiffrera text')
+    } else {
+      this.view.updateElementContent('#typeOfAction', 'dechiffrera')
+      this.view.updateElementContent('#encodeButton', 'Dechiffrera text')
+    }
   }
 }
 
