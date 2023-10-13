@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+  <meta charset="utf-8">
+  <title>Startsida</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+    crossorigin="anonymous"></script>
+</head>
+<div class="container-sm">
+  <div class="row bg-info mb-3">
+    <h1>Välkommen till Chiffer</h1>
+  </div>
+  <div class="row">
+    <p><h3>Sidan för att chiffrera och dechiffrera texter</h3></p>
+  </div>
+  <hr>
+  <form>
+    <h4>Vill du chiffrera eller dechiffrera en text?</h4>
+    <div class="form-group">
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="exampleRadios" id="cypher" value="cypher" checked>
+        <label class="form-check-label" for="exampleRadios1">
+          Chiffrera
+        </label>
+      </div>
+      <div class="form-check mb-3">
+        <input class="form-check-input" type="radio" name="exampleRadios" id="decypher" value="decypher">
+        <label class="form-check-label" for="exampleRadios2">
+          Dechiffrera
+        </label>
+      </div>
+      <div class="form-group">
+        <h4>Fyll i text du vill <span id="typeOfAction">chiffrera</span>:</h4>
+        <input type="text" class="form-control" id="textToConvert">
+      </div>
+      <h4>Välj typ av chiffer:</h4>
+      <div class="form-group">
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="typeOfCypher" id="rovarsprak" value="rovarsprak" checked>
+          <label class="form-check-label" for="rovarsprak">
+            Rövarspråk
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="typeOfCypher" id="fikonsprak" value="fikonsprak">
+          <label class="form-check-label" for="fikonsprak">
+            Fikonspråk
+          </label>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="radio" name="typeOfCypher" id="rot13" value="rot13">
+          <label class="form-check-label" for="rot13">
+            Rot13
+          </label>
+        </div>
+        <button type="button" class="btn btn-primary">Skapa Chiffer</button>
+        <div id="displayResult"></div>
+      </div>
+      </div>
+  </form>
+</div>
+</html>
