@@ -39,7 +39,13 @@ class Fikonsprak {
       throw new Error('Texten är inte på fikonspråk')
     } else {
       translatedTextArray = textToTranslate.split(' ')
-      return translatedTextArray[1].slice(0, 2) + translatedTextArray[0].substring(2)
+      for (let i = 0; i < translatedTextArray.length; i++) {
+        if (translatedTextArray[i].substring(0, 2) === 'fi') {
+          translatedTextArray[i] = translatedTextArray[i + 1].substring(0, 2).toLowerCase() + translatedTextArray[i].substring(2)
+          translatedTextArray.splice(i + 1, 1)
+        }
+      }
+      return translatedTextArray.join(' ')
     }
   }
 
