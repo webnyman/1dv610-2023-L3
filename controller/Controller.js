@@ -11,7 +11,7 @@ class Controller {
       this.handleButtonClick(event)
     })
     this.view.getElementsFromDOM('input[name="actionType"]').forEach(element => {
-      addEventListener('change', (event) => {
+      element.addEventListener('change', (event) => {
         this.changeActionText(event.target.value)
       })
     })
@@ -35,26 +35,29 @@ class Controller {
 
     this.view.updateElementContent('#displayResult', result)
   }
-  getInputText() {
-    return this.view.getElementFromDOM('#textToConvert').value
+  isEncode() {
+    return this.view.getElementFromDOM('#cypher').checked
   }
   getcypherToUse() {
     return this.view.getElementFromDOM('input[name="typeOfCypher"]:checked').value
   }
-  isEncode() {
-    return this.view.getElementFromDOM('#cypher').checked
+  getInputText() {
+    return this.view.getElementFromDOM('#textToConvert').value
   }
   sendFlashMessage(message) {
     this.view.displayFlashMessage(message)
   }
+
   changeActionText(actionType) {
-    if (actionType === 'cypher') {
-      this.view.updateElementContent('#typeOfAction', 'chiffrera')
-      this.view.updateElementContent('#encodeButton', 'Chiffrera text')
-    } else {
-      this.view.updateElementContent('#typeOfAction', 'dechiffrera')
-      this.view.updateElementContent('#encodeButton', 'Dechiffrera text')
-    }
+    (actionType === 'cypher') ? this.updateElementsToEncode() : this.updateElementsToDecode()
+  }
+  updateElementsToEncode() {
+    this.view.updateElementContent('#typeOfAction', 'chiffrera')
+    this.view.updateElementContent('#encodeButton', 'Chiffrera text')
+  }
+  updateElementsToDecode() {
+    this.view.updateElementContent('#typeOfAction', 'dechiffrera')
+    this.view.updateElementContent('#encodeButton', 'Dechiffrera text')
   }
 }
 

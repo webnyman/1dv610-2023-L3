@@ -11,9 +11,9 @@ class Rot13 {
   encodeToROT13 (text) {
     let encryptedText = ''
     if (this.stringFunctions.isStringEmpty(text)) {
-      return 'Texten är tom'
+      throw new Error('Texten är tom')
     } else {
-      encryptedText = text.replace(/[a-zåäö]/gi, letter => this.#rot13Cipher[this.#alphabet.indexOf(letter)])
+      encryptedText = text.replace(/[a-zA-ZåäöÅÄÖ]/g, letter => this.#rot13Cipher[this.#alphabet.indexOf(letter)])
       return encryptedText
     }
   }
@@ -21,9 +21,9 @@ class Rot13 {
   decodeFromROT13 (text) {
     let decryptedText = ''
     if (this.stringFunctions.isStringEmpty(text)) {
-      return 'Texten är tom'
+      throw new Error('Texten är tom')
     } else {
-      decryptedText = text.replace(/[a-zåäö]/gi, letter => this.#alphabet[this.#rot13Cipher.indexOf(letter)])
+      decryptedText = text.replace(/[a-zA-ZåäöÅÄÖ]/g, letter => this.#alphabet[this.#rot13Cipher.indexOf(letter)])
       return decryptedText
     }
   }
