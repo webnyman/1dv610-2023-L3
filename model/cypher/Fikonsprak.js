@@ -7,21 +7,29 @@ class Fikonsprak {
     this.stringFunctions = new StringFunctions()
   }
 
-  translateToFikonSprak (textToTranslate) {
+  translateToFikonSprak(textToTranslate) {
     if (this.stringFunctions.isStringEmpty(textToTranslate)) {
       throw new Error('Texten är tom')
-    } else if (this.stringFunctions.countNumberOfVowels(textToTranslate) === 0) {
-      throw new Error('Texten innehåller inga vokaler')
-    } else if (this.stringFunctions.countNumberOfWords(textToTranslate) > 1){
-      throw new Error('Det går bara att översätta ett ord i taget')
-    } else {
-      for (let i = 0; i < textToTranslate.length; i++) {
-        if (this.#charsToSkip.includes(textToTranslate[i])) {
-          return 'fi' + textToTranslate.substring(i + 1).toLowerCase() + ' ' + textToTranslate.substring(0, i + 1).toLowerCase() + 'kon'
+    }
+  
+    const words = textToTranslate.split(/\s+/)
+  
+    const translatedWords = words.map(word => {
+      if (this.stringFunctions.countNumberOfVowels(word) === 0) {
+        throw new Error('Texten innehåller inga vokaler')
+      } else {
+        for (let i = 0; i < word.length; i++) {
+          if (this.#charsToSkip.includes(word[i])) {
+            return 'fi' + word.substring(i + 1).toLowerCase() + ' ' + word.substring(0, i + 1).toLowerCase() + 'kon'
+          }
         }
       }
-    }
+      return word
+    })
+  
+    return translatedWords.join(' ')
   }
+  
 
   translateFromFikonSprak (textToTranslate) {
     let translatedTextArray = []
