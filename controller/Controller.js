@@ -24,6 +24,7 @@ class Controller {
     if (this.isEncode()) {
       try {
         result = this.cypher[this.getcypherToUse()].to(this.getInputText())
+        this.updateResultInView(result)
       } catch (error) {
         if (error) {
           this.sendFlashMessage('Ett fel uppstod vid chiffreringen: ' + error.message)
@@ -32,13 +33,13 @@ class Controller {
     } else {
       try {
         result = this.cypher[this.getcypherToUse()].from(this.getInputText())
+        this.updateResultInView(result)
       } catch (error) {
         if (error) {
           this.sendFlashMessage('Ett fel uppstod vid dechiffreringen: ' + error.message)
         }
       }
     }
-    this.view.updateElementContent('#displayResult', result)
   }
   isEncode() {
     return this.view.getElementFromDOM('#cypher').checked
@@ -50,7 +51,17 @@ class Controller {
     return this.view.getElementFromDOM('#textToConvert').value
   }
   sendFlashMessage(message) {
+    this.clearResultInView()
     this.view.displayFlashMessage(message)
+  }
+  updateResultInView(result) {
+    this.clearResultInView()
+    this.view.updateElementContent('#headerResult', 'Resultat:')
+    this.view.updateElementContent('#displayResult', result)
+  }
+  clearResultInView() {
+    this.view.updateElementContent('#headerResult', '')
+    this.view.updateElementContent('#displayResult', '')
   }
 
   changeActionText(actionType) {
