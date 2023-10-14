@@ -30,9 +30,14 @@ class Controller {
         }
       }
     } else {
-      result = this.cypher[this.getcypherToUse()].from(this.getInputText())
+      try {
+        result = this.cypher[this.getcypherToUse()].from(this.getInputText())
+      } catch (error) {
+        if (error) {
+          this.sendFlashMessage('Ett fel uppstod vid dechiffreringen: ' + error.message)
+        }
+      }
     }
-
     this.view.updateElementContent('#displayResult', result)
   }
   isEncode() {
