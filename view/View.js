@@ -28,6 +28,7 @@ class View {
       element.textContent = content;
     }
   }
+  
   displayFlashMessage(message) {
     const flashMessage = this.createElementInDOM('p', 'flashMessage')
     flashMessage.textContent = message

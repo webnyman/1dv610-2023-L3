@@ -60,12 +60,25 @@
             Fikonspråk
           </label>
         </div>
-        <div class="form-check mb-3">
+        <div class="form-check">
           <input class="form-check-input" type="radio" name="typeOfCypher" id="rot13" value="rot13">
           <label class="form-check-label" for="rot13">
             Rot13
           </label>
         </div>
+        <div class="form-group">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="typeOfCypher" id="rovarsprakRot13" value="rovarsprakRot13">
+            <label class="form-check-label" for="rovarsprakRot13">
+              Rövarspråk + Rot13
+            </label>
+          </div>
+          <div class="form-check mb-3">
+            <input class="form-check-input" type="radio" name="typeOfCypher" id="fikonsprakRot13" value="fikonsprakRot13">
+            <label class="form-check-label" for="fikonsprakRot13">
+              Fikonspråk + Rot13
+            </label>
+          </div>
         <button type="button" class="btn btn-primary mb-3" id="encodeButton">Chiffrera text</button>
         <div class="text-danger" id="flashMessage"></div>
         <h4 id="headerResult"></h4>
