@@ -3,12 +3,12 @@ import { View } from '../view/View.js'
 
 class Controller {
   constructor(model, view) {
-    this.cypher = model
-    this.view = view
+    this.cypher = Cypher
+    this.view = new View()
 
     // Eventlisteners
     this.view.getElementFromDOM('#encodeButton').addEventListener('click' , (event) => {
-      this.handleButtonClick(event)
+      this.#handleButtonClick(event)
     })
     this.view.getElementsFromDOM('input[name="actionType"]').forEach(element => {
       element.addEventListener('change', (event) => {
@@ -17,49 +17,50 @@ class Controller {
     })
   }
   
-  handleButtonClick(event) {
+  #handleButtonClick(event) {
     event.preventDefault()
     let result = ''
 
-    if (this.isEncode()) {
+    if (this.#isEncode()) {
       try {
-        result = this.cypher[this.getcypherToUse()].to(this.getInputText())
-        this.updateResultInView(result)
+        result = this.cypher[this.#getcypherToUse()].to(this.#getInputText())
+        this.#updateResultInView(result)
       } catch (error) {
         if (error) {
-          this.sendFlashMessage('Ett fel uppstod vid chiffreringen: ' + error.message)
+          this.#sendFlashMessage('Ett fel uppstod vid chiffreringen: ' + error.message)
         }
       }
     } else {
       try {
-        result = this.cypher[this.getcypherToUse()].from(this.getInputText())
-        this.updateResultInView(result)
+        result = this.cypher[this.#getcypherToUse()].from(this.#getInputText())
+        this.#updateResultInView(result)
       } catch (error) {
         if (error) {
-          this.sendFlashMessage('Ett fel uppstod vid dechiffreringen: ' + error.message)
+          this.#sendFlashMessage('Ett fel uppstod vid dechiffreringen: ' + error.message)
         }
       }
     }
   }
-  isEncode() {
+  
+  #isEncode() {
     return this.view.getElementFromDOM('#cypher').checked
   }
-  getcypherToUse() {
+  #getcypherToUse() {
     return this.view.getElementFromDOM('input[name="typeOfCypher"]:checked').value
   }
-  getInputText() {
+  #getInputText() {
     return this.view.getElementFromDOM('#textToConvert').value
   }
-  sendFlashMessage(message) {
-    this.clearResultInView()
+  #sendFlashMessage(message) {
+    this.#clearResultInView()
     this.view.displayFlashMessage(message)
   }
-  updateResultInView(result) {
-    this.clearResultInView()
+  #updateResultInView(result) {
+    this.#clearResultInView()
     this.view.updateElementContent('#headerResult', 'Resultat:')
     this.view.updateElementContent('#displayResult', result)
   }
-  clearResultInView() {
+  #clearResultInView() {
     this.view.updateElementContent('#headerResult', '')
     this.view.updateElementContent('#displayResult', '')
   }
@@ -77,6 +78,4 @@ class Controller {
   }
 }
 
-const cypher = Cypher
-const view = new View()
-const controller = new Controller(cypher, view)
+export { Controller }
