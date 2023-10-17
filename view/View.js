@@ -3,10 +3,12 @@ import { UserCipher } from '../model/UserCipher.js'
 class View {
   #FLASH_MESSAGE = '#flashMessage'
   #HISTORY_TABLE = '#historyTable'
+  #TABLE_HEADERS = ['Text att översätta', 'Typ av chiffer', 'Resultat']
+
   constructor() {
   }
 
-  createElementInDOM(tag, className) {
+  createElementInDOM(tag, className = '') {
     const element = document.createElement(tag)
     if (className) element.classList.add(className)
 
@@ -31,9 +33,9 @@ class View {
       element.textContent = content;
     }
   }
-  
+
   displayFlashMessage(message) {
-    const flashMessage = this.createElementInDOM('p', 'flashMessage')
+    const flashMessage = this.createElementInDOM('p')
     flashMessage.textContent = message
     this.getElementFromDOM(this.#FLASH_MESSAGE).appendChild(flashMessage)
     setTimeout(() => {
@@ -42,32 +44,32 @@ class View {
   }
 
   renderHistoryTable(cipherHistory) {
-    const historyTable = this.createElementInDOM('table', 'historyTable')
+    const historyTable = this.createElementInDOM('table')
     const tableHeader = historyTable.createTHead()
     const tableRow = tableHeader.insertRow()
 
-    const tableHeaders = ['Text att översätta', 'Typ av chiffer', 'Resultat']
-    tableHeaders.forEach(header => {
+    // Create table headers
+    this.#TABLE_HEADERS.forEach(header => {
       const tableHeader = document.createElement('th')
       tableHeader.textContent = header
       tableRow.appendChild(tableHeader)
     })
 
+    // Create table body
     const tableBody = historyTable.createTBody()
     cipherHistory.forEach(userCipher => {
-      if (!userCipher instanceof UserCipher) {
-        throw new Error('Felaktigt format av Chifferhistorik')
-      } else {
-        const tableRow = tableBody.insertRow()
-        const tableData = [userCipher.textToTranslate, userCipher.typeOfCipher, userCipher.result]
-        tableData.forEach(data => {
-          const tableCell = tableRow.insertCell()
-          tableCell.textContent = data
-        })
-      }
+      const tableRow = tableBody.insertRow()
+      const tableData = [userCipher.textToTranslate, userCipher.typeOfCipher, userCipher.result]
+      tableData.forEach(data => {
+        const tableCell = tableRow.insertCell()
+        tableCell.textContent = data
+      })
     })
+
+    // Render table
     this.getElementFromDOM(this.#HISTORY_TABLE).appendChild(historyTable)
   }
+
   clearHistoryTable() {
     this.getElementFromDOM(this.#HISTORY_TABLE).innerHTML = ''
   }

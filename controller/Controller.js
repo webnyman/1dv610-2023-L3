@@ -4,12 +4,15 @@ import { UserCipher } from '../model/UserCipher.js'
 import { CipherHistory } from '../model/CipherHistory.js'
 
 class Controller {
+  
   #ENCODE_BUTTON_SELECTOR = '#encodeButton'
   #ACTION_TYPE_SELECTOR = 'input[name="actionType"]'
   #TYPE_OF_CIPHER_SELECTOR = 'input[name="typeOfCipher"]:checked'
   #TEXT_TO_CONVERT_SELECTOR = '#textToConvert'
   #IS_ENCODE_SELECTOR = '#cipher'
   #TEXT_SPAN_SELECTOR = '#typeOfAction'
+  #HEADER_RESULT_SELECTOR = '#headerResult'
+  #DISPLAY_RESULT_SELECTOR = '#displayResult'
 
   constructor() {
     this.cipher = Cipher
@@ -41,7 +44,7 @@ class Controller {
         this.#updateHistoryTable(this.#getInputText(), this.#getCipherToUse(), result)
         this.#updateResultInView(result)
       } catch (error) {
-        this.#sendFlashMessage('Ett fel uppstod vid chiffreringen: ' + error.message)
+        this.#sendFlashMessage(error.message)
       }
     } else {
       try {
@@ -51,7 +54,7 @@ class Controller {
         this.#updateHistoryTable(this.#getInputText(), this.#getCipherToUse(), result)
         this.#updateResultInView(result)
       } catch (error) {
-        this.#sendFlashMessage('Ett fel uppstod vid dechiffreringen: ' + error.message)
+        this.#sendFlashMessage(error.message)
       }
     }
   }
@@ -71,8 +74,8 @@ class Controller {
   }
   #updateResultInView(result) {
     this.#clearResultInView()
-    this.view.updateElementContent('#headerResult', 'Resultat:')
-    this.view.updateElementContent('#displayResult', result)
+    this.view.updateElementContent(this.#HEADER_RESULT_SELECTOR, 'Resultat:')
+    this.view.updateElementContent(this.#DISPLAY_RESULT_SELECTOR, result)
   }
   #updateHistoryTable(textToTranslate, typeOfCipher, result) {
     const userCipher = new UserCipher(textToTranslate, typeOfCipher, result)
@@ -81,8 +84,8 @@ class Controller {
     this.view.renderHistoryTable(this.cipherHistory.getCipherHistory())
   }
   #clearResultInView() {
-    this.view.updateElementContent('#headerResult', '')
-    this.view.updateElementContent('#displayResult', '')
+    this.view.updateElementContent(this.#HEADER_RESULT_SELECTOR, '')
+    this.view.updateElementContent(this.#DISPLAY_RESULT_SELECTOR, '')
   }
 
   changeActionText(actionType) {
