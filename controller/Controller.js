@@ -1,9 +1,9 @@
-import { Cypher } from '../model/cypher_module.js'
+import { Cipher } from '../model/cipher_module.js'
 import { View } from '../view/View.js'
 
 class Controller {
-  constructor(model, view) {
-    this.cypher = Cypher
+  constructor() {
+    this.cipher = Cipher
     this.view = new View()
 
     // Eventlisteners
@@ -23,7 +23,7 @@ class Controller {
 
     if (this.#isEncode()) {
       try {
-        result = this.cypher[this.#getcypherToUse()].to(this.#getInputText())
+        result = this.cipher[this.#getcipherToUse()].to(this.#getInputText())
         this.#updateResultInView(result)
       } catch (error) {
         if (error) {
@@ -32,7 +32,7 @@ class Controller {
       }
     } else {
       try {
-        result = this.cypher[this.#getcypherToUse()].from(this.#getInputText())
+        result = this.cipher[this.#getcipherToUse()].from(this.#getInputText())
         this.#updateResultInView(result)
       } catch (error) {
         if (error) {
@@ -43,10 +43,10 @@ class Controller {
   }
   
   #isEncode() {
-    return this.view.getElementFromDOM('#cypher').checked
+    return this.view.getElementFromDOM('#cipher').checked
   }
-  #getcypherToUse() {
-    return this.view.getElementFromDOM('input[name="typeOfCypher"]:checked').value
+  #getcipherToUse() {
+    return this.view.getElementFromDOM('input[name="typeOfCipher"]:checked').value
   }
   #getInputText() {
     return this.view.getElementFromDOM('#textToConvert').value
@@ -66,7 +66,7 @@ class Controller {
   }
 
   changeActionText(actionType) {
-    (actionType === 'cypher') ? this.updateElementsToEncode() : this.updateElementsToDecode()
+    (actionType === 'cipher') ? this.updateElementsToEncode() : this.updateElementsToDecode()
   }
   updateElementsToEncode() {
     this.view.updateElementContent('#typeOfAction', 'chiffrera')

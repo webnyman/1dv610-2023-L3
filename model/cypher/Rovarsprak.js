@@ -9,7 +9,9 @@ class Rovarsprak {
 
   translateToRovarSprak (textToTranslate) {
     let rovarSprak = ''
-    if (this.validateTextInput(textToTranslate)) {
+    if (this.stringFunctions.isStringEmpty(textToTranslate)) {
+      throw new Error('Texten är tom')
+    } else if (this.validateTextInput(textToTranslate)) {
       for (let i = 0; i < textToTranslate.length; i++) {
         if (this.#charsToSkip.includes(textToTranslate[i])) {
           rovarSprak += textToTranslate[i]

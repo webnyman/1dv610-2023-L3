@@ -6,7 +6,7 @@ const rovarSprakLibrary = new Rovarsprak()
 const rot13Library = new Rot13()
 const fikonSprakLibrary = new Fikonsprak()
 
-const Cypher = {
+const Cipher = {
   fikonsprak: {
     to: (text) => fikonSprakLibrary.translateToFikonSprak(text),
     from: (text) => fikonSprakLibrary.translateFromFikonSprak(text)
@@ -29,4 +29,4 @@ const Cypher = {
   }
 }
 
-export { Cypher }
+export { Cipher }
