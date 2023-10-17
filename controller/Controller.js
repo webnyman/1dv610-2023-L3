@@ -4,7 +4,7 @@ import { UserCipher } from '../model/UserCipher.js'
 import { CipherHistory } from '../model/CipherHistory.js'
 
 class Controller {
-  
+
   #ENCODE_BUTTON_SELECTOR = '#encodeButton'
   #ACTION_TYPE_SELECTOR = 'input[name="actionType"]'
   #TYPE_OF_CIPHER_SELECTOR = 'input[name="typeOfCipher"]:checked'
@@ -52,6 +52,7 @@ class Controller {
         this.#clearResultInView()
         this.view.clearHistoryTable()
         this.#updateHistoryTable(this.#getInputText(), this.#getCipherToUse(), result)
+        this.#clearResultInView()
         this.#updateResultInView(result)
       } catch (error) {
         this.#sendFlashMessage(error.message)
@@ -73,13 +74,11 @@ class Controller {
     this.view.displayFlashMessage(message)
   }
   #updateResultInView(result) {
-    this.#clearResultInView()
     this.view.updateElementContent(this.#HEADER_RESULT_SELECTOR, 'Resultat:')
     this.view.updateElementContent(this.#DISPLAY_RESULT_SELECTOR, result)
   }
   #updateHistoryTable(textToTranslate, typeOfCipher, result) {
     const userCipher = new UserCipher(textToTranslate, typeOfCipher, result)
-    console.log(userCipher)
     this.cipherHistory.addCipherToHistory(userCipher)
     this.view.renderHistoryTable(this.cipherHistory.getCipherHistory())
   }

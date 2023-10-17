@@ -3,7 +3,7 @@ import { UserCipher } from '../model/UserCipher.js'
 class View {
   #FLASH_MESSAGE = '#flashMessage'
   #HISTORY_TABLE = '#historyTable'
-  #TABLE_HEADERS = ['Text att översätta', 'Typ av chiffer', 'Resultat']
+  #TABLE_HEADERS = ['Text att chiffrera', 'Typ av chiffer', 'Resultat']
 
   constructor() {
   }
