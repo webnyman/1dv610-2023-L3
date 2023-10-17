@@ -37,13 +37,19 @@ class View {
   displayFlashMessage(message) {
     const flashMessage = this.createElementInDOM('p')
     flashMessage.textContent = message
-    this.getElementFromDOM(this.#FLASH_MESSAGE).appendChild(flashMessage)
+    this.getElementFromDOM(this.#FLASH_MESSAGE)
+      .appendChild(flashMessage)
     setTimeout(() => {
       flashMessage.remove()
     }, 3000)
   }
 
   renderHistoryTable(cipherHistory) {
+    this.getElementFromDOM(this.#HISTORY_TABLE)
+      .appendChild(this.#createHistoryTable(cipherHistory))
+  }
+
+  #createHistoryTable(cipherHistory) {
     const historyTable = this.createElementInDOM('table')
     const tableHeader = historyTable.createTHead()
     const tableRow = tableHeader.insertRow()
@@ -66,8 +72,7 @@ class View {
       })
     })
 
-    // Render table
-    this.getElementFromDOM(this.#HISTORY_TABLE).appendChild(historyTable)
+    return historyTable
   }
 
   clearHistoryTable() {
