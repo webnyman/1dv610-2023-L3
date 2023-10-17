@@ -1,7 +1,8 @@
 import { UserCipher } from '../model/UserCipher.js'
 
 class View {
-  
+  #FLASH_MESSAGE = '#flashMessage'
+  #HISTORY_TABLE = '#historyTable'
   constructor() {
   }
 
@@ -34,7 +35,7 @@ class View {
   displayFlashMessage(message) {
     const flashMessage = this.createElementInDOM('p', 'flashMessage')
     flashMessage.textContent = message
-    this.getElementFromDOM('#flashMessage').appendChild(flashMessage)
+    this.getElementFromDOM(this.#FLASH_MESSAGE).appendChild(flashMessage)
     setTimeout(() => {
       flashMessage.remove()
     }, 3000)
@@ -54,7 +55,7 @@ class View {
 
     const tableBody = historyTable.createTBody()
     cipherHistory.forEach(userCipher => {
-      if (userCipher instanceof UserCipher === false) {
+      if (!userCipher instanceof UserCipher) {
         throw new Error('Felaktigt format av Chifferhistorik')
       } else {
         const tableRow = tableBody.insertRow()
@@ -65,10 +66,10 @@ class View {
         })
       }
     })
-    this.getElementFromDOM('#historyTable').appendChild(historyTable)
+    this.getElementFromDOM(this.#HISTORY_TABLE).appendChild(historyTable)
   }
   clearHistoryTable() {
-    this.getElementFromDOM('#historyTable').innerHTML = ''
+    this.getElementFromDOM(this.#HISTORY_TABLE).innerHTML = ''
   }
 }
 

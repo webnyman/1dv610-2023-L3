@@ -4,22 +4,32 @@ import { UserCipher } from '../model/UserCipher.js'
 import { CipherHistory } from '../model/CipherHistory.js'
 
 class Controller {
+  #ENCODE_BUTTON_SELECTOR = '#encodeButton'
+  #ACTION_TYPE_SELECTOR = 'input[name="actionType"]'
+  #TYPE_OF_CIPHER_SELECTOR = 'input[name="typeOfCipher"]:checked'
+  #TEXT_TO_CONVERT_SELECTOR = '#textToConvert'
+  #IS_ENCODE_SELECTOR = '#cipher'
+  #TEXT_SPAN_SELECTOR = '#typeOfAction'
+
   constructor() {
     this.cipher = Cipher
     this.view = new View()
     this.cipherHistory = new CipherHistory()
 
-    // Eventlisteners
-    this.view.getElementFromDOM('#encodeButton').addEventListener('click' , (event) => {
+    this.#registerEventListeners()
+  }
+
+  #registerEventListeners() {
+    this.view.getElementFromDOM(this.#ENCODE_BUTTON_SELECTOR).addEventListener('click', (event) => {
       this.#handleButtonClick(event)
     })
-    this.view.getElementsFromDOM('input[name="actionType"]').forEach(element => {
+    this.view.getElementsFromDOM(this.#ACTION_TYPE_SELECTOR).forEach(element => {
       element.addEventListener('change', (event) => {
         this.changeActionText(event.target.value)
       })
     })
   }
-  
+
   #handleButtonClick(event) {
     event.preventDefault()
     let result = ''
@@ -31,9 +41,7 @@ class Controller {
         this.#updateHistoryTable(this.#getInputText(), this.#getCipherToUse(), result)
         this.#updateResultInView(result)
       } catch (error) {
-        if (error) {
-          this.#sendFlashMessage('Ett fel uppstod vid chiffreringen: ' + error.message)
-        }
+        this.#sendFlashMessage('Ett fel uppstod vid chiffreringen: ' + error.message)
       }
     } else {
       try {
@@ -43,21 +51,19 @@ class Controller {
         this.#updateHistoryTable(this.#getInputText(), this.#getCipherToUse(), result)
         this.#updateResultInView(result)
       } catch (error) {
-        if (error) {
-          this.#sendFlashMessage('Ett fel uppstod vid dechiffreringen: ' + error.message)
-        }
+        this.#sendFlashMessage('Ett fel uppstod vid dechiffreringen: ' + error.message)
       }
     }
   }
-  
+
   #isEncode() {
-    return this.view.getElementFromDOM('#cipher').checked
+    return this.view.getElementFromDOM(this.#IS_ENCODE_SELECTOR).checked
   }
   #getCipherToUse() {
-    return this.view.getElementFromDOM('input[name="typeOfCipher"]:checked').value
+    return this.view.getElementFromDOM(this.#TYPE_OF_CIPHER_SELECTOR).value
   }
   #getInputText() {
-    return this.view.getElementFromDOM('#textToConvert').value
+    return this.view.getElementFromDOM(this.#TEXT_TO_CONVERT_SELECTOR).value
   }
   #sendFlashMessage(message) {
     this.#clearResultInView()
@@ -83,12 +89,12 @@ class Controller {
     (actionType === 'cipher') ? this.updateElementsToEncode() : this.updateElementsToDecode()
   }
   updateElementsToEncode() {
-    this.view.updateElementContent('#typeOfAction', 'chiffrera')
-    this.view.updateElementContent('#encodeButton', 'Chiffrera text')
+    this.view.updateElementContent(this.#TEXT_SPAN_SELECTOR, 'chiffrera')
+    this.view.updateElementContent(this.#ENCODE_BUTTON_SELECTOR, 'Chiffrera text')
   }
   updateElementsToDecode() {
-    this.view.updateElementContent('#typeOfAction', 'dechiffrera')
-    this.view.updateElementContent('#encodeButton', 'Dechiffrera text')
+    this.view.updateElementContent(this.#TEXT_SPAN_SELECTOR, 'dechiffrera')
+    this.view.updateElementContent(this.#ENCODE_BUTTON_SELECTOR, 'Dechiffrera text')
   }
 }
 
