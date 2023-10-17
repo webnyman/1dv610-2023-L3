@@ -28,7 +28,7 @@ class Controller {
     })
     this.view.getElementsFromDOM(this.#ACTION_TYPE_SELECTOR).forEach(element => {
       element.addEventListener('change', (event) => {
-        this.changeActionText(event.target.value)
+        this.#changeActionText(event.target.value)
       })
     })
   }
@@ -41,19 +41,27 @@ class Controller {
         result = this.cipher[this.#getCipherToUse()].to(this.#getInputText())
         this.#clearResultInView()
         this.view.clearHistoryTable()
-        this.#updateHistoryTable(this.#getInputText(), this.#getCipherToUse(), result)
+
+        this.#addCipherToHistory(this.#getInputText(), this.#getCipherToUse(), result)
+        this.#updateHistoryTable()
+
         this.#updateResultInView(result)
+
       } catch (error) {
         this.#sendFlashMessage(error.message)
       }
     } else {
       try {
         result = this.cipher[this.#getCipherToUse()].from(this.#getInputText())
+
         this.#clearResultInView()
         this.view.clearHistoryTable()
-        this.#updateHistoryTable(this.#getInputText(), this.#getCipherToUse(), result)
-        this.#clearResultInView()
+
+        this.#addCipherToHistory(this.#getInputText(), this.#getCipherToUse(), result)
+        this.#updateHistoryTable()
+
         this.#updateResultInView(result)
+        
       } catch (error) {
         this.#sendFlashMessage(error.message)
       }
@@ -77,24 +85,26 @@ class Controller {
     this.view.updateElementContent(this.#HEADER_RESULT_SELECTOR, 'Resultat:')
     this.view.updateElementContent(this.#DISPLAY_RESULT_SELECTOR, result)
   }
-  #updateHistoryTable(textToTranslate, typeOfCipher, result) {
+  #updateHistoryTable() {
+    this.view.renderHistoryTable(this.cipherHistory.getCipherHistory())
+  }
+  #addCipherToHistory(textToTranslate, typeOfCipher, result) {
     const userCipher = new UserCipher(textToTranslate, typeOfCipher, result)
     this.cipherHistory.addCipherToHistory(userCipher)
-    this.view.renderHistoryTable(this.cipherHistory.getCipherHistory())
   }
   #clearResultInView() {
     this.view.updateElementContent(this.#HEADER_RESULT_SELECTOR, '')
     this.view.updateElementContent(this.#DISPLAY_RESULT_SELECTOR, '')
   }
 
-  changeActionText(actionType) {
-    (actionType === 'cipher') ? this.updateElementsToEncode() : this.updateElementsToDecode()
+  #changeActionText(actionType) {
+    (actionType === 'cipher') ? this.#updateElementsToEncode() : this.#updateElementsToDecode()
   }
-  updateElementsToEncode() {
+  #updateElementsToEncode() {
     this.view.updateElementContent(this.#TEXT_SPAN_SELECTOR, 'chiffrera')
     this.view.updateElementContent(this.#ENCODE_BUTTON_SELECTOR, 'Chiffrera text')
   }
-  updateElementsToDecode() {
+  #updateElementsToDecode() {
     this.view.updateElementContent(this.#TEXT_SPAN_SELECTOR, 'dechiffrera')
     this.view.updateElementContent(this.#ENCODE_BUTTON_SELECTOR, 'Dechiffrera text')
   }
