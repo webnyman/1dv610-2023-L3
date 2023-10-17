@@ -18,76 +18,90 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
 <div class="container-sm">
-  <div class="row bg-info mb-3">
-    <h1>Välkommen till Chiffer</h1>
-  </div>
   <div class="row">
-    <p>
-    <h3>Sidan för att chiffrera och dechiffrera texter</h3>
-    </p>
-  </div>
-  <hr>
-  <form>
-    <h4>Vill du chiffrera eller dechiffrera en text?</h4>
-    <div class="form-group">
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="actionType" id="cipher" value="cipher" checked>
-        <label class="form-check-label" for="exampleRadios1">
-          Chiffrera
-        </label>
+    <div class="col-9">
+      <div class="bg-info mb-3">
+        <h1>Välkommen till Chiffer</h1>
       </div>
-      <div class="form-check mb-3">
-        <input class="form-check-input" type="radio" name="actionType" id="decipher" value="decipher">
-        <label class="form-check-label" for="exampleRadios2">
-          Dechiffrera
-        </label>
+      <div>
+        <p>
+        <h3>Sidan för att chiffrera och dechiffrera texter</h3>
+        </p>
       </div>
-      <div class="form-group">
-        <h4>Fyll i text du vill <span id="typeOfAction">chiffrera</span>:</h4>
-        <input type="text" class="form-control" id="textToConvert">
-      </div>
-      <h4>Välj typ av chiffer:</h4>
-      <div class="form-group">
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="typeOfCipher" id="rovarsprak" value="rovarsprak" checked>
-          <label class="form-check-label" for="rovarsprak">
-            Rövarspråk
-          </label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="typeOfCipher" id="fikonsprak" value="fikonsprak">
-          <label class="form-check-label" for="fikonsprak">
-            Fikonspråk
-          </label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="typeOfCipher" id="rot13" value="rot13">
-          <label class="form-check-label" for="rot13">
-            Rot13
-          </label>
-        </div>
+      <hr>
+      <form>
+        <h4>Vill du chiffrera eller dechiffrera en text?</h4>
         <div class="form-group">
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="typeOfCipher" id="rovarsprakRot13"
-              value="rovarsprakRot13">
-            <label class="form-check-label" for="rovarsprakRot13">
-              Rövarspråk + Rot13
+            <input class="form-check-input" type="radio" name="actionType" id="cipher" value="cipher" checked>
+            <label class="form-check-label" for="exampleRadios1">
+              Chiffrera
             </label>
           </div>
           <div class="form-check mb-3">
-            <input class="form-check-input" type="radio" name="typeOfCipher" id="fikonsprakRot13"
-              value="fikonsprakRot13">
-            <label class="form-check-label" for="fikonsprakRot13">
-              Fikonspråk + Rot13
+            <input class="form-check-input" type="radio" name="actionType" id="decipher" value="decipher">
+            <label class="form-check-label" for="exampleRadios2">
+              Dechiffrera
             </label>
           </div>
-          <button type="button" class="btn btn-primary mb-3" id="encodeButton">Chiffrera text</button>
-          <div class="text-danger" id="flashMessage"></div>
-          <h4 id="headerResult"></h4>
-          <div id="displayResult"></div>
-        </div>
+          <div class="form-group">
+            <h4>Fyll i text du vill <span id="typeOfAction">chiffrera</span>:</h4>
+            <input type="text" class="form-control" id="textToConvert">
+          </div>
+          <h4>Välj typ av chiffer:</h4>
+          <div class="form-group">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="typeOfCipher" id="rovarsprak" value="rovarsprak"
+                checked>
+              <label class="form-check-label" for="rovarsprak">
+                Rövarspråk
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="typeOfCipher" id="fikonsprak" value="fikonsprak">
+              <label class="form-check-label" for="fikonsprak">
+                Fikonspråk
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="typeOfCipher" id="rot13" value="rot13">
+              <label class="form-check-label" for="rot13">
+                Rot13
+              </label>
+            </div>
+            <div class="form-group">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="typeOfCipher" id="rovarsprakRot13"
+                  value="rovarsprakRot13">
+                <label class="form-check-label" for="rovarsprakRot13">
+                  Rövarspråk + Rot13
+                </label>
+              </div>
+              <div class="form-check mb-3">
+                <input class="form-check-input" type="radio" name="typeOfCipher" id="fikonsprakRot13"
+                  value="fikonsprakRot13">
+                <label class="form-check-label" for="fikonsprakRot13">
+                  Fikonspråk + Rot13
+                </label>
+              </div>
+              <button type="button" class="btn btn-primary mb-3" id="encodeButton">Chiffrera text</button>
+              <div class="text-danger" id="flashMessage"></div>
+              <h4 id="headerResult"></h4>
+              <div id="displayResult"></div>
+            </div>
+          </div>
+      </form>
+    </div>
+  </div>
+  <div class="col-3 mt-5">
+    <div class="card ml-auto" style="width: 18rem;">
+      <div class="card-header text-center">
+        Historik
       </div>
-  </form>
+      <div class="card-body" id="historyTable">
+      </div>
+    </div>
+  </div>
 </div>
 <script type="module" src="app.js"></script>
 

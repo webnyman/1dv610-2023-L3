@@ -27,15 +27,19 @@ class Rovarsprak {
 
   translateFromRovarsprak (textToTranslate) {
     let decodedRovarSprak = ''
-    if (this.isRovarSprak(textToTranslate) === false) {
-      throw new Error('Texten är inte på rövarspråk')
+    if (this.stringFunctions.isStringEmpty(textToTranslate)) {
+      throw new Error('Texten är tom')
     } else {
-      for (let i = 0; i < textToTranslate.length; i++) {
-        if (this.#charsToSkip.includes(textToTranslate[i])) {
-          decodedRovarSprak += textToTranslate[i]
-        } else {
-          decodedRovarSprak += textToTranslate[i]
-          i = i + 2
+      if (this.isRovarSprak(textToTranslate) === false) {
+        throw new Error('Texten är inte på rövarspråk')
+      } else {
+        for (let i = 0; i < textToTranslate.length; i++) {
+          if (this.#charsToSkip.includes(textToTranslate[i])) {
+            decodedRovarSprak += textToTranslate[i]
+          } else {
+            decodedRovarSprak += textToTranslate[i]
+            i = i + 2
+          }
         }
       }
     }

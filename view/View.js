@@ -1,3 +1,5 @@
+import { UserCipher } from '../model/UserCipher.js'
+
 class View {
   
   constructor() {
@@ -36,6 +38,37 @@ class View {
     setTimeout(() => {
       flashMessage.remove()
     }, 3000)
+  }
+
+  renderHistoryTable(cipherHistory) {
+    const historyTable = this.createElementInDOM('table', 'historyTable')
+    const tableHeader = historyTable.createTHead()
+    const tableRow = tableHeader.insertRow()
+
+    const tableHeaders = ['Text att översätta', 'Typ av chiffer', 'Resultat']
+    tableHeaders.forEach(header => {
+      const tableHeader = document.createElement('th')
+      tableHeader.textContent = header
+      tableRow.appendChild(tableHeader)
+    })
+
+    const tableBody = historyTable.createTBody()
+    cipherHistory.forEach(userCipher => {
+      if (userCipher instanceof UserCipher === false) {
+        throw new Error('Felaktigt format av Chifferhistorik')
+      } else {
+        const tableRow = tableBody.insertRow()
+        const tableData = [userCipher.textToTranslate, userCipher.typeOfCipher, userCipher.result]
+        tableData.forEach(data => {
+          const tableCell = tableRow.insertCell()
+          tableCell.textContent = data
+        })
+      }
+    })
+    this.getElementFromDOM('#historyTable').appendChild(historyTable)
+  }
+  clearHistoryTable() {
+    this.getElementFromDOM('#historyTable').innerHTML = ''
   }
 }
 

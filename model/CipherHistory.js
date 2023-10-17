@@ -1,14 +1,22 @@
+import { UserCipher } from './UserCipher.js'
+
 class CipherHistory {
   constructor() {
-    this.history = []
+    this.userHistory = []
   }
-  addCipherToHistory(Cipher) {
-    this.history.push(Cipher)
+  addCipherToHistory(userCipher) {
+    if (userCipher instanceof UserCipher) {
+      this.userHistory.push(userCipher)
+    } else {
+      throw new Error('Felaktigt format av Chifferhistorik')
+    }
   }
   getCipherHistory() {
-    return this.history
+    return this.userHistory
   }
   clearCipherHistory() {
-    this.history = []
+    this.userHistory = []
   }
 }
+
+export { CipherHistory }
