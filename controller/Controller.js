@@ -1,7 +1,4 @@
-import { Cipher } from '../model/cipher_module.js'
-import { View } from '../view/View.js'
 import { UserCipher } from '../model/UserCipher.js'
-import { CipherHistory } from '../model/CipherHistory.js'
 
 class Controller {
   #ENCODE_BUTTON_SELECTOR = '#encodeButton'
@@ -13,10 +10,10 @@ class Controller {
   #HEADER_RESULT_SELECTOR = '#headerResult'
   #DISPLAY_RESULT_SELECTOR = '#displayResult'
 
-  constructor() {
-    this.cipher = Cipher
-    this.view = new View()
-    this.cipherHistory = new CipherHistory()
+  constructor(cipher, view, cipherHistory) {
+    this.cipher = cipher
+    this.view = view
+    this.cipherHistory = cipherHistory
 
     this.#registerEventListeners()
   }
