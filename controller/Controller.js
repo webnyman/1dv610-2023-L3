@@ -4,7 +4,6 @@ import { UserCipher } from '../model/UserCipher.js'
 import { CipherHistory } from '../model/CipherHistory.js'
 
 class Controller {
-
   #ENCODE_BUTTON_SELECTOR = '#encodeButton'
   #ACTION_TYPE_SELECTOR = 'input[name="actionType"]'
   #TYPE_OF_CIPHER_SELECTOR = 'input[name="typeOfCipher"]:checked'
@@ -23,10 +22,13 @@ class Controller {
   }
 
   #registerEventListeners() {
-    this.view.getElementFromDOM(this.#ENCODE_BUTTON_SELECTOR).addEventListener('click', (event) => {
+    this.view.getElementFromDOM(this.#ENCODE_BUTTON_SELECTOR)
+    .addEventListener('click', (event) => {
       this.#handleButtonClick(event)
     })
-    this.view.getElementsFromDOM(this.#ACTION_TYPE_SELECTOR).forEach(element => {
+
+    this.view.getElementsFromDOM(this.#ACTION_TYPE_SELECTOR)
+    .forEach(element => {
       element.addEventListener('change', (event) => {
         this.#changeActionText(event.target.value)
       })

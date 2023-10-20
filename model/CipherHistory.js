@@ -1,21 +1,20 @@
 import { UserCipher } from './UserCipher.js'
 
 class CipherHistory {
-  constructor() {
-    this.userHistory = []
-  }
+  #userHistory = []
+
   addCipherToHistory(userCipher) {
     if (userCipher instanceof UserCipher) {
-      this.userHistory.push(userCipher)
+      this.#userHistory.push(userCipher)
     } else {
       throw new Error('Felaktigt format av Chifferhistorik')
     }
   }
   getCipherHistory() {
-    return this.userHistory
+    return this.#userHistory
   }
   clearCipherHistory() {
-    this.userHistory = []
+    this.#userHistory = []
   }
 }
 

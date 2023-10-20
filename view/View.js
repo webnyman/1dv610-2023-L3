@@ -5,9 +5,6 @@ class View {
   #HISTORY_TABLE = '#historyTable'
   #TABLE_HEADERS = ['Text att chiffrera', 'Typ av chiffer', 'Resultat']
 
-  constructor() {
-  }
-
   createElementInDOM(tag, className = '') {
     const element = document.createElement(tag)
     if (className) element.classList.add(className)
@@ -65,7 +62,7 @@ class View {
     const tableBody = historyTable.createTBody()
     cipherHistory.forEach(userCipher => {
       const tableRow = tableBody.insertRow()
-      const tableData = [userCipher.textToTranslate, userCipher.typeOfCipher, userCipher.result]
+      const tableData = [userCipher.getTextToTranslate(), userCipher.getTypeOfCipher(), userCipher.getResult()]
       tableData.forEach(data => {
         const tableCell = tableRow.insertCell()
         tableCell.textContent = data
