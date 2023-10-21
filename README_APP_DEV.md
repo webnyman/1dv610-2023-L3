@@ -1,7 +1,4 @@
 # Utökad README för apputvecklare
-1dv610 Laboration 3 - App av modulen Cypher and deCypher text
-
-Är du apputvecklare? [Läs utökad info här](./README_APP_DEV.md)
 
 ## Beskrivning
 Detta är en webbapp som med hjälp av modulen "Cypher and deCypher text" låter användaren, via ett webbgränsnitt, chiffrera och dechiffrera en text på tio olika sätt.
