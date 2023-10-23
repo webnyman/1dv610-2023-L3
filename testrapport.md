@@ -1,10 +1,10 @@
 # Testrapport för appen
-|Testfall beskrivning|Indata|Förväntat utfall|Testresultat|
-|--------------------|------|----------------|------------|
-|Ingen text chiffreras|Tomt i fält för text, användare klickar på "Chiffrera text"|Meddelandet "Texten är tom" visas|OK|
-|Text utan vokaler chiffreras till Fikonspråk|"hmpf" anges i fält för text, Användare väljer "Fikonspråk" som chiffer och klickar på "Chiffrera text"|Meddelandet "Texten innehåller inga vokaler" visas|OK|
-|Text som inte är Rövarspråk dechiffreras |Användare väljer "Dechiffrera" och "hhelollolo" anges i fält för text. Användare väljer "Rövarspråk" som chiffer och klickar på "Dechiffrera text"|Meddelandet "Texten är inte på rövarspråk" visas|OK|
-|Text som inte är Fikonspråk dechiffreras |Användare väljer "Dechiffrera" och "fillo hekon firld wokot" anges i fält för text. Användare väljer "Fikonspråk" som chiffer och klickar på "Dechiffrera text"|Meddelandet "Texten är inte på Fikonspråk" visas|OK|
-|Historik visas i tabell|Användare väljer "Chiffrera" och anger "Hello World" i fält för text. Väljer Rövarspråk som typ av chiffer och klickar på "Chiffrera text"| Resultat "Hohelollolo Wowororloldod" visas nedan och i tabell för historik visas den senaste chiffreringen.|OK|
-|Historik visas inte i tabell vid felaktig dechiffrering|Användare väljer "Dechiffrera" och "hhelollolo" anges i fält för text. Användare väljer "Rövarspråk" som chiffer och klickar på "Dechiffrera text"|Meddelandet "Texten är inte på rövarspråk" visas och hitoriken lämnas oförändrar|OK|
-|Webbappen ska ha en responsiv design|Användaren använder mobil|Webbappen anpassar sig responsivt|OK|
+|Testfall beskrivning|Indata|Förväntat utfall|Testresultat|Bild på test|
+|--------------------|------|----------------|------------|------------|
+|Ingen text chiffreras|Tomt i fält för text, användare klickar på "Chiffrera text"|Meddelandet "Texten är tom" visas|OK|![Test1](./images/test/test1.PNG "Test1")|
+|Text utan vokaler chiffreras till Fikonspråk|"hmpf" anges i fält för text, Användare väljer "Fikonspråk" som chiffer och klickar på "Chiffrera text"|Meddelandet "Texten innehåller inga vokaler" visas|OK|![Test2](./images/test/test2.PNG "Test2")|
+|Text som inte är Rövarspråk dechiffreras |Användare väljer "Dechiffrera" och "hhelollolo" anges i fält för text. Användare väljer "Rövarspråk" som chiffer och klickar på "Dechiffrera text"|Meddelandet "Texten är inte på rövarspråk" visas|OK|![Test3](./images/test/test3.PNG "Test3")|
+|Text som inte är Fikonspråk dechiffreras |Användare väljer "Dechiffrera" och "fillo hekon firld wokot" anges i fält för text. Användare väljer "Fikonspråk" som chiffer och klickar på "Dechiffrera text"|Meddelandet "Texten är inte på Fikonspråk" visas|OK|![Test4](./images/test/test4.PNG "Test4")|
+|Historik visas i tabell|Användare väljer "Chiffrera" och anger "Hello World" i fält för text. Väljer Rövarspråk som typ av chiffer och klickar på "Chiffrera text"| Resultat "Hohelollolo Wowororloldod" visas nedan och i tabell för historik visas den senaste chiffreringen.|OK|![Test5](./images/test/test5.PNG "Test5")|
+|Historik visas inte i tabell vid felaktig dechiffrering|Användare väljer "Dechiffrera" och "hhelollolo" anges i fält för text. Användare väljer "Rövarspråk" som chiffer och klickar på "Dechiffrera text"|Meddelandet "Texten är inte på rövarspråk" visas och hitoriken lämnas oförändrar|OK|![Test6](./images/test/test6.PNG "Test6")|
+|Webbappen ska ha en responsiv design|Användaren använder mobil|Webbappen anpassar sig responsivt|OK|![Test7](./images/test/test7.PNG "Test7")|
