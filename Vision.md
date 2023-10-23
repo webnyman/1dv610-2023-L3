@@ -13,4 +13,4 @@ Webbappen ska programmeras i HTML och Javascript med en MVC-struktur.
 Webbappen ska ha en responsiv design.
 
 ## Skiss
-![Skiss](./1dv610%20L3%20skiss.drawio.png "Skiss")
+![Skiss](./images/1dv610%20L3%20skiss.drawio.png "Skiss")
