@@ -15,6 +15,7 @@ Webbappen är strukturerad med mönstret Model - View - Controller (MVC)
 ## Filer/klasser som används (kort beskrivning)
 |Fil/Klass|Beskrivning|
 |---------|-----------|
+|index.html|HTML-fil som presenterar webbapplikationen. Använder Bootstrap 4 och importerar app.js|
 |app.js|Startpunkt för applikationen. Hämtar View och Model och Dependency-Injectar i Controller.|
 |controller/Controller.js|Hanterar all logik i applikationen, registrerar nödvändiga eventlyssnare från index.html, manipulerart modellerna och renderar till vyn.|
 |model/cypher/|Här ligger de nödvändiga klasserna som modulen "Cypher" använder.|
