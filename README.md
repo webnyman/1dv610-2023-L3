@@ -1,10 +1,10 @@
-# 1dv610-2023-L3 - Webbapp av modul
-1dv610 Laboration 3 - App av modulen Cypher and deCypher text
+# CHIFFER - en webbapplikation för att chiffrera och dechiffrera texter.
+
 
 Är du apputvecklare? [Läs utökad info här](./README_APP_DEV.md)
 
 ## Beskrivning
-Detta är en webbapp som med hjälp av modulen "Cypher and deCypher text" låter användaren, via ett webbgränsnitt, chiffrera och dechiffrera en text på tio olika sätt:
+Detta är en webbapplokation som med hjälp av modulen "Cypher and deCypher text" låter användaren, via ett webbgränsnitt, chiffrera och dechiffrera en text på tio olika sätt:
 
 - till Rövarspråk
 - från Rövarspråk
