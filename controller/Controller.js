@@ -70,16 +70,24 @@ class Controller {
   #isEncode() {
     return this.view.getElementFromDOM(this.#IS_ENCODE_SELECTOR).checked
   }
+
   #getCipherToUse() {
     return this.view.getElementFromDOM(this.#TYPE_OF_CIPHER_SELECTOR).value
   }
+
   #getInputText() {
     return this.view.getElementFromDOM(this.#TEXT_TO_CONVERT_SELECTOR).value
   }
+
   #sendFlashMessage(message) {
     this.#clearResultInView()
     this.view.displayFlashMessage(message)
   }
+  #clearResultInView() {
+    this.view.updateElementContent(this.#HEADER_RESULT_SELECTOR, '')
+    this.view.updateElementContent(this.#DISPLAY_RESULT_SELECTOR, '')
+  }
+
   #updateResultInView(result) {
     this.view.updateElementContent(this.#HEADER_RESULT_SELECTOR, 'Resultat:')
     this.view.updateElementContent(this.#DISPLAY_RESULT_SELECTOR, result)
@@ -87,13 +95,10 @@ class Controller {
   #updateHistoryTable() {
     this.view.renderHistoryTable(this.cipherHistory.getCipherHistory())
   }
+  
   #addCipherToHistory(textToTranslate, typeOfCipher, result) {
     const userCipher = new UserCipher(textToTranslate, typeOfCipher, result)
     this.cipherHistory.addCipherToHistory(userCipher)
-  }
-  #clearResultInView() {
-    this.view.updateElementContent(this.#HEADER_RESULT_SELECTOR, '')
-    this.view.updateElementContent(this.#DISPLAY_RESULT_SELECTOR, '')
   }
 
   #changeActionText(actionType) {

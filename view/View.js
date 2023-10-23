@@ -5,7 +5,7 @@ class View {
   #HISTORY_TABLE = '#historyTable'
   #TABLE_HEADERS = ['Text att chiffrera', 'Typ av chiffer', 'Resultat']
 
-  createElementInDOM(tag, className = '') {
+  #createElementInDOM(tag, className = '') {
     const element = document.createElement(tag)
     if (className) element.classList.add(className)
 
@@ -32,7 +32,7 @@ class View {
   }
 
   displayFlashMessage(message) {
-    const flashMessage = this.createElementInDOM('p')
+    const flashMessage = this.#createElementInDOM('p')
     flashMessage.textContent = message
     this.getElementFromDOM(this.#FLASH_MESSAGE)
       .appendChild(flashMessage)
@@ -47,7 +47,7 @@ class View {
   }
 
   #createHistoryTable(cipherHistory) {
-    const historyTable = this.createElementInDOM('table')
+    const historyTable = this.#createElementInDOM('table')
     const tableHeader = historyTable.createTHead()
     const tableRow = tableHeader.insertRow()
 
